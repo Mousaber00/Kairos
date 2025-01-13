@@ -1,7 +1,6 @@
 package com.kairos.data.remote.di
 
-import com.google.gson.Gson
-import com.kairos.presentation.ui.common.util.WEATHER_BASE_URL
+import com.kairos.data.remote.util.WEATHER_BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -9,7 +8,6 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
-
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -20,13 +18,20 @@ object RetrofitModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder().baseUrl(WEATHER_BASE_URL)
-
-
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
     }
 
 
+
+
+
+
 }
+
+
+
+
+
+
 

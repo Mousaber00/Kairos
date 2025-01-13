@@ -11,7 +11,7 @@ plugins {
 
 }
 
-val weatherKey: String = gradleLocalProperties(rootDir,providers).getProperty("WEATHER_API_KEY")
+//val weatherKey: String = gradleLocalProperties(rootDir,providers).getProperty("WEATHER_API_KEY")
 
 
 android {
@@ -20,7 +20,7 @@ android {
 
     defaultConfig {
         applicationId = "com.kairos"
-        minSdk = 33
+        minSdk = 29
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -39,11 +39,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-         buildConfigField("String", "WEATHER_KEY", weatherKey)
+         //buildConfigField("String", "WEATHER_KEY", weatherKey)
         }
-        getByName("debug"){
+        /*getByName("debug"){
             buildConfigField("String", "WEATHER_KEY", weatherKey)
-        }
+        }*/
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -67,7 +67,6 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -81,6 +80,13 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewModelCompose)
+    implementation(libs.androidx.lifecycle.runtimeCompose)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.lifecycle.livedata)
 
 
     //hilt
@@ -108,6 +114,7 @@ dependencies {
 
     //timber
     implementation(libs.timber)
+
 
 
 
