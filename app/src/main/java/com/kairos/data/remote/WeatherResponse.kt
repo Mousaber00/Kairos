@@ -1,12 +1,13 @@
-package com.kairos.data.model
+package com.kairos.data.remote
 
 import com.google.gson.annotations.SerializedName
+import com.kairos.domain.weather.model.Weather
 
-    data class WeatherResponse(
+data class WeatherResponse(
 
         @SerializedName("lat")
         val lat: Double,
-        @SerializedName("lat")
+        @SerializedName("lon")
         val lon: Double,
         @SerializedName("timezone")
         val timezone: String,
@@ -15,13 +16,13 @@ import com.google.gson.annotations.SerializedName
         @SerializedName("current")
         val current: Current,
         @SerializedName("minutely")
-        val minutely: Minutely,
+        val minutely: List<Minutely>,
         @SerializedName("hourly")
-        val hourly: Hourly,
+        val hourly: List<Hourly>,
         @SerializedName("daily")
-        val daily: Daily,
-        @SerializedName("alerts")
-        val alerts: Alerts,
+        val daily: List<Daily>,
+        /*@SerializedName("alerts")
+        val alerts: Alerts,*/
         )
 
 
@@ -153,7 +154,7 @@ import com.google.gson.annotations.SerializedName
         @SerializedName("summary")
         val dailySummary:String,
         @SerializedName("temp")
-        val dailyTemp:DailyTemp,
+        val dailyTemp: DailyTemp,
         @SerializedName("feels_like")
         val dailyFeelsLike: DailyFeelsLike,
         @SerializedName("weather")
@@ -210,4 +211,14 @@ import com.google.gson.annotations.SerializedName
         val alertsDescription: String,
         //@SerializedName("tags")
         //val alertsTags: List<>,
+    )
+
+    fun WeatherResponse.toWeather() = Weather(
+        lat = lat,
+        lon = lon,
+        hourly = hourly,
+        current = current,
+        daily = daily,
+        timezoneOffset = timezoneOffset,
+        timezone = timezone,
     )
